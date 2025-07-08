@@ -24,9 +24,9 @@ spec:
         - containerPort: 5004
         env:
         - name: MONGODB_URI
-          value: "mongodb+srv://user:userpass@dead-drop-db.shfcaup.mongodb.net/Esport?retryWrites=true&w=majority&appName=dead-drop-db"
+          value: "Add MongoDB URI:"
         - name: JWT_SECRET
-          value: "347186591486#^%%ABCF*##GHE"
+          value: "Add JWT Secret:"
         - name: PORT
           value: "5004"
         - name: NODE_ENV

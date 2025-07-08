@@ -94,6 +94,14 @@ After deployment, services are accessible via NodePort:
 - **Coach-Player Service**: `http://<NodeIP>:30004`
 - **Ticket Service**: `http://<NodeIP>:30005`
 
+#### Minikube Service URLs
+If using Minikube, you can get the service URLs with:
+```bash
+minikube service registration-service-nodeport --url
+minikube service coach-player-service-nodeport --url
+minikube service ticket-service-nodeport --url
+```
+
 ### Example: Coach-Player Microservice
 - Deployment: `Coach_Player_Microservice/deployment.yaml`
 - Service: `Coach_Player_Microservice/service.yaml`

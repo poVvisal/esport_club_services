@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticket-service
+  labels:
+    app: ticket-service
+    tier: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ticket-service
+  template:
+    metadata:
+      labels:
+        app: ticket-service
+        tier: backend
+    spec:
+      containers:
+      - name: ticket-service
+        image: kingczin/ticket-service:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5005
+        env:
+        - name: MONGODB_URI
+          value: "mongodb+srv://user:userpass@dead-drop-db.shfcaup.mongodb.net/Esport?retryWrites=true&w=majority&appName=dead-drop-db"
+        - name: JWT_SECRET
+          value: "347186591486#^%%ABCF*##GHE"
+        - name: PORT
+          value: "5005"
+        - name: NODE_ENV
+          value: "production"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5005
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5005
+          initialDelaySeconds: 5
+          periodSeconds: 5
